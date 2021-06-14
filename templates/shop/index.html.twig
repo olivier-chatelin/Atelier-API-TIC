@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ShopController!{% endblock %}
+
+{% block body %}
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>Quantité commandée</th>
+        <th>Action</th>
+    </tr>
+        {% for product in products[0] %}
+    <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.stock }}</td>
+            <form action="{{ path('shop_buy') }}" method="post">
+                <td>
+                    <input type="number" name="quantity" id="quantité">
+                </td>
+                <td>
+                        <input type="hidden" name="product" value="{{ product.id }}">
+                        <button>Buy</button>
+                </td>
+            </form>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
